@@ -1,0 +1,24 @@
+services:
+  redis:
+    container_name: redis
+    image: 'redis:7.4.2'
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - app-network
+  mailing-service:
+    container_name: mailing-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8089"
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true

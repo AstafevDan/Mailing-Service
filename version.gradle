@@ -1,0 +1,6 @@
+ext {
+    versions = [
+            'openapi' : '2.6.0',
+            'redisTest' : '1.6.4'
+    ]
+}

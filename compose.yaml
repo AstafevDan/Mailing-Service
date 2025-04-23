@@ -6,7 +6,7 @@ services:
       - "6379:6379"
     restart: always
     networks:
-      - app-network
+      - auth-service_app-network
   mailing-service:
     container_name: mailing-service
     build:
@@ -17,8 +17,8 @@ services:
     depends_on:
       - redis
     networks:
-      - app-network
+      - auth-service_app-network
 
 networks:
-  app-network:
+  auth-service_app-network:
     external: true

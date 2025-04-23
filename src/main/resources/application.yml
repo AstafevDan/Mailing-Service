@@ -1,9 +1,13 @@
 spring:
   application:
     name: Mailing-Service
+  data:
+    redis:
+      host: redis
+      port: 6379
   kafka:
+    bootstrap-servers: kafka:9092
     consumer:
-      bootstrap-servers: localhost:9092
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: users-group

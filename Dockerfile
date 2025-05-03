@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jdk-alpine AS builder
 
 WORKDIR /app
 
-COPY build.gradle gradlew gradlew.bat settings.gradle ./
+COPY build.gradle gradlew gradlew.bat settings.gradle version.gradle ./
 COPY gradle ./gradle/
 COPY src ./src/
 

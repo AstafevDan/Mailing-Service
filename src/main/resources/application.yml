@@ -1,12 +1,17 @@
 spring:
   application:
     name: Mailing-Service
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      group-id: users-group
-      auto-offset-reset: earliest
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+kafka:
+  bootstrap-servers: kafka:9092
+  consumer:
+    group-id: users-group
+    auto-offset-reset: earliest
+    enable-auto-commit: false
+
 server:
   port: 8089

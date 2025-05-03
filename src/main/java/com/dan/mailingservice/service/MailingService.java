@@ -40,6 +40,9 @@ public class MailingService {
     private final CodeService codeService;
     private final KafkaConsumer<Long, String> kafkaConsumer;
 
+    /**
+     * Подписка консюмера на топик Kafka.
+     */
     @PostConstruct
     public void init() {
         kafkaConsumer.subscribe(List.of(TOPIC_NAME));
@@ -70,6 +73,9 @@ public class MailingService {
         }
     }
 
+    /**
+     * Синхронно коммитит оффсеты.
+     */
     private void commitOffsets() {
         try {
             kafkaConsumer.commitSync();
@@ -78,6 +84,11 @@ public class MailingService {
         }
     }
 
+    /**
+     * Обрабатывает все полученные записи.
+     *
+     * @param records записи, полученные из топика Kafka.
+     */
     private void processRecords(ConsumerRecords<Long, String> records) {
         for (ConsumerRecord<Long, String> record : records) {
             try {
@@ -88,6 +99,11 @@ public class MailingService {
         }
     }
 
+    /**
+     * Обрабатывает одну запись из топика, генерируя код для указанного email.
+     *
+     * @param record запись, полученная из топика Kafka.
+     */
     private void processSingleRecord(ConsumerRecord<Long, String> record) {
         String email = record.value();
         log.info("Received message from {}", email);
@@ -109,6 +125,11 @@ public class MailingService {
         return true;
     }
 
+    /**
+     * Корректное завершение работы консюмера.
+     *
+     * @throws InterruptedException выбрасываемое исключение
+     */
     @PreDestroy
     public void shutdown() throws InterruptedException {
         running.set(true);

@@ -1,6 +1,7 @@
 ext {
     versions = [
             'openapi' : '2.6.0',
-            'redisTest' : '1.6.4'
+            'redisTest' : '1.6.4',
+            'kafka' : '4.0.0'
     ]
 }

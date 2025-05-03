@@ -1,0 +1,6 @@
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: users-group
+    auto-offset-reset: earliest
+    enable-auto-commit: false
